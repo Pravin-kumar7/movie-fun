@@ -16,18 +16,18 @@ public class SmokeTest {
 
         assertThat(homePage, containsString("Please select one of the following links:"));
 
-        String setupPage = restTemplate.getForObject(url("/setup.jsp"), String.class);
+        String setupPage = restTemplate.getForObject(url("/setup"), String.class);
 
-        assertThat(setupPage, containsString("Wedding Crashers"));
-        assertThat(setupPage, containsString("Starsky & Hutch"));
-        assertThat(setupPage, containsString("Shanghai Knights"));
-        assertThat(setupPage, containsString("I-Spy"));
-        assertThat(setupPage, containsString("The Royal Tenenbaums"));
+        assertThat(setupPage, containsString("Bahu"));
+        assertThat(setupPage, containsString("Mag"));
+        assertThat(setupPage, containsString("Bad"));
+        assertThat(setupPage, containsString("Luc"));
+        assertThat(setupPage, containsString("troy"));
 
         String movieFunPage = restTemplate.getForObject(url("/moviefun"), String.class);
 
-        assertThat(movieFunPage, containsString("Wedding Crashers"));
-        assertThat(movieFunPage, containsString("David Dobkin"));
+        assertThat(movieFunPage, containsString("troy"));
+        assertThat(movieFunPage, containsString("Bahu"));
     }
 
     private String url(String path) {
