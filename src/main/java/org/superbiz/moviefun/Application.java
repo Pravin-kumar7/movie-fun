@@ -12,14 +12,9 @@ import org.superbiz.moviefun.blobstore.BlobStore;
 import org.superbiz.moviefun.blobstore.S3Store;
 import org.superbiz.moviefun.blobstore.ServiceCredentials;
 
-
 @SpringBootApplication
 public class Application {
 
-
-
-
-    
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
@@ -27,6 +22,11 @@ public class Application {
     @Bean
     public ServletRegistrationBean actionServletRegistration(ActionServlet actionServlet) {
         return new ServletRegistrationBean(actionServlet, "/moviefun/*");
+    }
+
+    @Bean
+    ServiceCredentials serviceCredentials(@Value("${vcap.services}") String vcapServices) {
+        return new ServiceCredentials(vcapServices);
     }
 
     @Bean
@@ -47,10 +47,4 @@ public class Application {
 
         return new S3Store(s3Client, photoStorageBucket);
     }
-
-    @Bean
-    ServiceCredentials serviceCredentials(@Value("${vcap.services}") String vcapServices) {
-        return new ServiceCredentials(vcapServices);
-    }
-
 }
